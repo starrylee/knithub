@@ -51,7 +51,7 @@ export default async function projectRoutes(fastify: FastifyInstance) {
     ]);
 
     return successResponse({
-      items: projects.map(p => ({
+      items: projects.map((p) => ({
         ...p,
         createdAt: p.createdAt.toISOString(),
         updatedAt: p.updatedAt.toISOString(),

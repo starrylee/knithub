@@ -20,7 +20,7 @@ const jwtPlugin: FastifyPluginAsync = async (fastify: FastifyInstance) => {
   fastify.decorate('authenticate', async (request: FastifyRequest) => {
     try {
       await request.jwtVerify();
-    } catch (err) {
+    } catch {
       throw fastify.httpErrors.unauthorized('Invalid token');
     }
   });

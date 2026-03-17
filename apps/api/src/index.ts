@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
+import sensible from '@fastify/sensible';
 
 import configPlugin from './plugins/config.js';
 import prismaPlugin from './plugins/prisma.js';
@@ -19,6 +20,9 @@ async function bootstrap() {
       level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
     },
   });
+
+  // 注册 @fastify/sensible（提供 httpErrors 等工具）
+  await fastify.register(sensible);
 
   // 注册配置插件
   await fastify.register(configPlugin);
@@ -43,7 +47,7 @@ async function bootstrap() {
   await fastify.register(statsRoutes, { prefix: '/api/stats' });
 
   // 错误处理
-  fastify.setErrorHandler((error, request, reply) => {
+  fastify.setErrorHandler((error, _request, reply) => {
     fastify.log.error(error);
 
     if (error.validation) {

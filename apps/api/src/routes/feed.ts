@@ -40,7 +40,7 @@ export default async function feedRoutes(fastify: FastifyInstance) {
     ]);
 
     return successResponse({
-      items: posts.map(p => ({
+      items: posts.map((p) => ({
         id: p.id,
         content: p.content,
         imageUrl: p.imageUrl,
