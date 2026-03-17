@@ -1,0 +1,39 @@
+{
+  "name": "@knithub/api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "db:studio": "prisma studio",
+    "db:seed": "tsx prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.0",
+    "@fastify/jwt": "^8.0.0",
+    "@fastify/redis": "^7.0.0",
+    "@knithub/types": "workspace:*",
+    "@prisma/client": "^5.7.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.0",
+    "fastify": "^4.25.0",
+    "fastify-plugin": "^4.5.0",
+    "fastify-zod": "^1.4.0",
+    "ioredis": "^5.3.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.10.0",
+    "prisma": "^5.7.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}

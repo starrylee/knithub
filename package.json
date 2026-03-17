@@ -1,0 +1,22 @@
+{
+  "name": "knithub",
+  "version": "1.0.0",
+  "description": "KnitHub - 编织爱好者平台",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "dev:web": "pnpm --filter @knithub/web dev",
+    "dev:api": "pnpm --filter @knithub/api dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "db:migrate": "pnpm --filter @knithub/api db:migrate",
+    "db:generate": "pnpm --filter @knithub/api db:generate",
+    "db:studio": "pnpm --filter @knithub/api db:studio"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "packageManager": "pnpm@8.12.0"
+}

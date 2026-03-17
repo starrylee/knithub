@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  avatar    String?
+  bio       String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  projects  Project[]
+  yarnStash YarnStash[]
+  posts     Post[]
+
+  @@map("users")
+}
+
+model Project {
+  id          String        @id @default(uuid())
+  title       String
+  description String?
+  status      ProjectStatus @default(active)
+  progress    Int           @default(0)
+  patternName String?       @map("pattern_name")
+  coverImage  String?       @map("cover_image")
+  userId      String        @map("user_id")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@map("projects")
+}
+
+model YarnStash {
+  id         String     @id @default(uuid())
+  brand      String
+  name       String
+  color      String
+  colorCode  String?    @map("color_code")
+  weight     YarnWeight
+  quantity   Float
+  unit       YarnUnit
+  notes      String?
+  userId     String     @map("user_id")
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("yarn_stash")
+}
+
+model Post {
+  id            String   @id @default(uuid())
+  content       String
+  imageUrl      String?  @map("image_url")
+  userId        String   @map("user_id")
+  likesCount    Int      @default(0) @map("likes_count")
+  commentsCount Int      @default(0) @map("comments_count")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("posts")
+}
+
+enum ProjectStatus {
+  active
+  completed
+  hibernating
+
+  @@map("project_status")
+}
+
+enum YarnWeight {
+  lace
+  fingering
+  sport
+  dk
+  worsted
+  bulky
+  super_bulky
+
+  @@map("yarn_weight")
+}
+
+enum YarnUnit {
+  skeins
+  grams
+  yards
+
+  @@map("yarn_unit")
+}

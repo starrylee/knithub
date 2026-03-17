@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 24 30% 18%;
+    --card: 40 33% 97%;
+    --card-foreground: 24 30% 18%;
+    --popover: 40 33% 97%;
+    --popover-foreground: 24 30% 18%;
+    --primary: 11 75% 63%;
+    --primary-foreground: 40 33% 97%;
+    --secondary: 30 20% 90%;
+    --secondary-foreground: 24 30% 18%;
+    --muted: 30 15% 92%;
+    --muted-foreground: 24 15% 45%;
+    --accent: 30 20% 90%;
+    --accent-foreground: 24 30% 18%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 11 75% 63%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-cream text-tea font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4b5a5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a09282;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
