@@ -5,7 +5,6 @@ import { authApi } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import type { AuthResponse } from '@knithub/types';
 
 export function Register() {
   const navigate = useNavigate();

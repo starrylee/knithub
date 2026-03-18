@@ -8,7 +8,7 @@ import { ProjectCard } from '@/components/ProjectCard';
 import { StatCard } from '@/components/StatCard';
 import { Button } from '@/components/ui/button';
 import { FolderHeart, Package, Wrench, Plus, ArrowRight } from 'lucide-react';
-import type { DashboardStats, Project, PostWithUser } from '@knithub/types';
+import type { Project, PostWithUser } from '@knithub/types';
 
 // Dashboard 组件（已登录状态）
 function Dashboard() {
