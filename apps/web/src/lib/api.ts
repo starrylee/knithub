@@ -15,32 +15,32 @@ import type {
 // 认证相关 API
 export const authApi = {
   login: (data: LoginRequest) =>
-    apiClient.post<ApiResponse<AuthResponse>>('/api/auth/login', data),
+    apiClient.post('/api/auth/login', data) as Promise<ApiResponse<AuthResponse>>,
 
   register: (data: RegisterRequest) =>
-    apiClient.post<ApiResponse<AuthResponse>>('/api/auth/register', data),
+    apiClient.post('/api/auth/register', data) as Promise<ApiResponse<AuthResponse>>,
 };
 
 // 用户相关 API
 export const userApi = {
   getMe: () =>
-    apiClient.get<ApiResponse<User & { projectCount: number; yarnCount: number; postCount: number }>>('/api/users/me'),
+    apiClient.get('/api/users/me') as Promise<ApiResponse<User & { projectCount: number; yarnCount: number; postCount: number }>>,
 };
 
 // 统计相关 API
 export const statsApi = {
   getStats: () =>
-    apiClient.get<ApiResponse<DashboardStats>>('/api/stats'),
+    apiClient.get('/api/stats') as Promise<ApiResponse<DashboardStats>>,
 };
 
 // 项目相关 API
 export const projectApi = {
   getProjects: (params?: { status?: ProjectStatus; page?: number; limit?: number }) =>
-    apiClient.get<ApiResponse<PaginatedData<Project>>>('/api/projects', { params }),
+    apiClient.get('/api/projects', { params }) as Promise<ApiResponse<PaginatedData<Project>>>,
 };
 
 // Feed 相关 API
 export const feedApi = {
   getFeed: (params?: { page?: number; limit?: number }) =>
-    apiClient.get<ApiResponse<PaginatedData<PostWithUser>>>('/api/feed', { params }),
+    apiClient.get('/api/feed', { params }) as Promise<ApiResponse<PaginatedData<PostWithUser>>>,
 };
