@@ -8,6 +8,8 @@
     "dev:web": "pnpm --filter @knithub/web dev",
     "dev:api": "pnpm --filter @knithub/api dev",
     "build": "pnpm -r build",
+    "build:api": "pnpm --filter @knithub/types build && pnpm --filter @knithub/api build",
+    "build:web": "pnpm --filter @knithub/types build && pnpm --filter @knithub/web build",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
     "db:migrate": "pnpm --filter @knithub/api db:migrate",
