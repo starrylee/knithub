@@ -37,8 +37,8 @@ coverage
 .nyc_output
 
 # Prisma
-apps/api/prisma/migrations/*
-!apps/api/prisma/migrations/migration_lock.toml
+apps/api/prisma/*.db
+apps/api/prisma/*.db-journal
 
 # Cache
 .cache
