@@ -29,7 +29,7 @@ async function bootstrap() {
 
   // 注册 CORS - 允许所有来源
   await fastify.register(cors, {
-    origin: true, // 允许所有来源
+    origin: true,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
