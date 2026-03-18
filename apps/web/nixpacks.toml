@@ -4,4 +4,4 @@
 cmd = "cd ../.. && pnpm --filter @knithub/types build && pnpm --filter @knithub/web build"
 
 [start]
-cmd = "cd apps/web && serve -s dist -l $PORT"
+cmd = "pnpm start"
