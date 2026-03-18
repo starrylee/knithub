@@ -4,4 +4,4 @@
 cmd = "cd ../.. && pnpm --filter @knithub/types build && pnpm --filter @knithub/api build"
 
 [start]
-cmd = "cd apps/api && pnpm start"
+cmd = "cd apps/api && prisma migrate deploy && node dist/index.js"
