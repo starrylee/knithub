@@ -29,7 +29,10 @@ async function bootstrap() {
 
   // 注册 CORS
   await fastify.register(cors, {
-    origin: fastify.config.FRONTEND_URL,
+    origin: (origin, callback) => {
+      // 允许所有来源（生产环境应该限制）
+      callback(null, true);
+    },
     credentials: true,
   });
 
