@@ -18,10 +18,10 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@fastify/cors": "^9.0.0",
-    "@fastify/jwt": "^8.0.0",
-    "@fastify/redis": "^7.0.0",
-    "@fastify/sensible": "^6.0.4",
+    "@fastify/cors": "^8.5.0",
+    "@fastify/jwt": "^7.2.4",
+    "@fastify/redis": "^6.2.0",
+    "@fastify/sensible": "^5.5.0",
     "@knithub/types": "workspace:*",
     "@prisma/client": "^5.7.0",
     "bcryptjs": "^2.4.3",
