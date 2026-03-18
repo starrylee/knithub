@@ -27,7 +27,7 @@ async function bootstrap() {
   // 注册配置插件
   await fastify.register(configPlugin);
 
-  // 注册 CORS
+  // 注册 CORS - 允许所有来源
   await fastify.register(cors, {
     origin: (origin, callback) => {
       // 允许所有来源（生产环境应该限制）
