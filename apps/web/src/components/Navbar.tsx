@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { User, LogOut, Settings, FolderHeart, Package } from 'lucide-react';
+import { LogOut, Settings, FolderHeart, Package } from 'lucide-react';
 
 export function Navbar() {
   const { isLoggedIn, user, clearAuth } = useAuthStore();

@@ -14,33 +14,45 @@ import type {
 
 // 认证相关 API
 export const authApi = {
-  login: (data: LoginRequest) =>
-    apiClient.post<ApiResponse<AuthResponse>>('/api/auth/login', data),
+  login: async (data: LoginRequest) => {
+    const res = await apiClient.post<ApiResponse<AuthResponse>>('/api/auth/login', data);
+    return res.data;
+  },
   
-  register: (data: RegisterRequest) =>
-    apiClient.post<ApiResponse<AuthResponse>>('/api/auth/register', data),
+  register: async (data: RegisterRequest) => {
+    const res = await apiClient.post<ApiResponse<AuthResponse>>('/api/auth/register', data);
+    return res.data;
+  },
 };
 
 // 用户相关 API
 export const userApi = {
-  getMe: () =>
-    apiClient.get<ApiResponse<User & { projectCount: number; yarnCount: number; postCount: number }>>('/api/users/me'),
+  getMe: async () => {
+    const res = await apiClient.get<ApiResponse<User & { projectCount: number; yarnCount: number; postCount: number }>>('/api/users/me');
+    return res.data;
+  },
 };
 
 // 统计相关 API
 export const statsApi = {
-  getStats: () =>
-    apiClient.get<ApiResponse<DashboardStats>>('/api/stats'),
+  getStats: async () => {
+    const res = await apiClient.get<ApiResponse<DashboardStats>>('/api/stats');
+    return res.data;
+  },
 };
 
 // 项目相关 API
 export const projectApi = {
-  getProjects: (params?: { status?: ProjectStatus; page?: number; limit?: number }) =>
-    apiClient.get<ApiResponse<PaginatedData<Project>>>('/api/projects', { params }),
+  getProjects: async (params?: { status?: ProjectStatus; page?: number; limit?: number }) => {
+    const res = await apiClient.get<ApiResponse<PaginatedData<Project>>>('/api/projects', { params });
+    return res.data;
+  },
 };
 
 // Feed 相关 API
 export const feedApi = {
-  getFeed: (params?: { page?: number; limit?: number }) =>
-    apiClient.get<ApiResponse<PaginatedData<PostWithUser>>>('/api/feed', { params }),
+  getFeed: async (params?: { page?: number; limit?: number }) => {
+    const res = await apiClient.get<ApiResponse<PaginatedData<PostWithUser>>>('/api/feed', { params });
+    return res.data;
+  },
 };

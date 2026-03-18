@@ -16,7 +16,7 @@ export function Login() {
 
   const loginMutation = useMutation({
     mutationFn: authApi.login,
-    onSuccess: (response: { success: boolean; data: AuthResponse; error: { message: string } | null }) => {
+    onSuccess: (response) => {
       if (response.success && response.data) {
         setAuth(response.data.user, response.data.tokens);
         navigate('/');
@@ -24,8 +24,8 @@ export function Login() {
         setError(response.error.message);
       }
     },
-    onError: (err: string) => {
-      setError(err || '登录失败，请重试');
+    onError: () => {
+      setError('登录失败，请重试');
     },
   });
 

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/authStore';
@@ -16,36 +15,24 @@ function Dashboard() {
   const navigate = useNavigate();
   const { user } = useAuthStore();
 
-  const { data: statsData } = useQuery<{
-    success: boolean;
-    data: DashboardStats;
-    error: null;
-  }>({
+  const { data: statsData } = useQuery({
     queryKey: ['stats'],
     queryFn: statsApi.getStats,
   });
 
-  const { data: projectsData } = useQuery<{
-    success: boolean;
-    data: { items: Project[] };
-    error: null;
-  }>({
+  const { data: projectsData } = useQuery({
     queryKey: ['projects', 'active'],
     queryFn: () => projectApi.getProjects({ status: 'active', limit: 4 }),
   });
 
-  const { data: feedData } = useQuery<{
-    success: boolean;
-    data: { items: PostWithUser[] };
-    error: null;
-  }>({
+  const { data: feedData } = useQuery({
     queryKey: ['feed'],
     queryFn: () => feedApi.getFeed({ limit: 6 }),
   });
 
   const stats = statsData?.data;
-  const projects = projectsData?.data?.items || [];
-  const feed = feedData?.data?.items || [];
+  const projects: Project[] = projectsData?.data?.items || [];
+  const feed: PostWithUser[] = feedData?.data?.items || [];
 
   return (
     <div className="min-h-screen bg-cream">
@@ -117,7 +104,7 @@ function Dashboard() {
               </Button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {projects.map((project) => (
+              {projects.map((project: Project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
             </div>
@@ -134,7 +121,7 @@ function Dashboard() {
             </Button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {feed.map((post) => (
+            {feed.map((post: PostWithUser) => (
               <PostCard key={post.id} post={post} />
             ))}
           </div>
@@ -148,16 +135,12 @@ function Dashboard() {
 function LandingPage() {
   const navigate = useNavigate();
 
-  const { data: feedData } = useQuery<{
-    success: boolean;
-    data: { items: PostWithUser[] };
-    error: null;
-  }>({
+  const { data: feedData } = useQuery({
     queryKey: ['feed', 'public'],
     queryFn: () => feedApi.getFeed({ limit: 6 }),
   });
 
-  const feed = feedData?.data?.items || [];
+  const feed: PostWithUser[] = feedData?.data?.items || [];
 
   const features = [
     {
@@ -250,7 +233,7 @@ function LandingPage() {
             <p className="text-tea/60">看看社区里的编织达人们都在创作什么</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {feed.map((post) => (
+            {feed.map((post: PostWithUser) => (
               <PostCard key={post.id} post={post} />
             ))}
           </div>
