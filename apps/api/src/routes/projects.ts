@@ -50,8 +50,21 @@ export default async function projectRoutes(fastify: FastifyInstance) {
       fastify.prisma.project.count({ where }),
     ]);
 
+    type ProjectItem = {
+      id: string;
+      title: string;
+      description: string | null;
+      status: string;
+      progress: number;
+      patternName: string | null;
+      coverImage: string | null;
+      userId: string;
+      createdAt: Date;
+      updatedAt: Date;
+    };
+
     return successResponse({
-      items: projects.map((p) => ({
+      items: (projects as ProjectItem[]).map((p) => ({
         ...p,
         createdAt: p.createdAt.toISOString(),
         updatedAt: p.updatedAt.toISOString(),

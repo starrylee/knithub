@@ -39,8 +39,24 @@ export default async function feedRoutes(fastify: FastifyInstance) {
       fastify.prisma.post.count(),
     ]);
 
+    type PostWithUser = {
+      id: string;
+      content: string;
+      imageUrl: string | null;
+      userId: string;
+      likesCount: number;
+      commentsCount: number;
+      createdAt: Date;
+      updatedAt: Date;
+      user: {
+        id: string;
+        username: string;
+        avatar: string | null;
+      };
+    };
+
     return successResponse({
-      items: posts.map((p) => ({
+      items: (posts as PostWithUser[]).map((p) => ({
         id: p.id,
         content: p.content,
         imageUrl: p.imageUrl,
