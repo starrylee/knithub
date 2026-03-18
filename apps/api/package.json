@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "prebuild": "cd ../../packages/types && pnpm build",
-    "build": "tsc",
+    "build": "cd ../../packages/types && pnpm build && cd ../../apps/api && tsc",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
     "db:migrate": "prisma migrate dev",
