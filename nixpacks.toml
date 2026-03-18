@@ -1,0 +1,7 @@
+[phases.setup]
+
+[phases.build]
+cmd = "pnpm --filter @knithub/types build && pnpm --filter @knithub/api build"
+
+[start]
+cmd = "cd apps/api && pnpm start"
