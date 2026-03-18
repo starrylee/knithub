@@ -29,11 +29,13 @@ async function bootstrap() {
 
   // 注册 CORS - 允许所有来源
   await fastify.register(cors, {
-    origin: (origin, callback) => {
-      // 允许所有来源（生产环境应该限制）
-      callback(null, true);
-    },
+    origin: true, // 允许所有来源
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    exposedHeaders: ['Content-Range', 'X-Content-Range'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   });
 
   // 注册数据库和缓存插件
